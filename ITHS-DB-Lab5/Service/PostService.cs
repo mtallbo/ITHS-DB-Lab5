@@ -21,5 +21,14 @@ namespace ITHS_DB_Lab5.Service
 
         public Post Get(string id) =>
             posts.Find<Post>(post => post.Id == id).FirstOrDefault();
+
+        public Post Create(Post post)
+        {
+            posts.InsertOne(post);
+            return post;
+        }
+
+        public void Remove(string id) =>
+            posts.DeleteOne(post => post.Id == id);
     }
 }
