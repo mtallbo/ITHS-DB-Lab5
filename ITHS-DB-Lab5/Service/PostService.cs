@@ -1,5 +1,6 @@
 ﻿using ITHS_DB_Lab5.Models;
 using Microsoft.Extensions.Configuration;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System.Collections.Generic;
 
@@ -27,9 +28,14 @@ namespace ITHS_DB_Lab5.Service
             posts.InsertOne(post);
             return post;
         }
-        public void Update(string id, Post carIn)
+        public void Update(string id, Post postIn)
         {
-            posts.ReplaceOne(post => post.Id == id, carIn);
+            var filter = Builders<Post>.Filter
+             .Eq(p => p.Id, postIn.Id);
+            var update = Builders<Post>.Update
+                .Set("Title", postIn.Title)
+                .Set("Text", postIn.Text);
+            posts.UpdateOne(filter, update);
         }
         public void Remove(string id) =>
             posts.DeleteOne(post => post.Id == id);

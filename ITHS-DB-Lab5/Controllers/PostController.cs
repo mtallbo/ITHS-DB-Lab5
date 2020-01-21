@@ -24,9 +24,19 @@ namespace ITHS_DB_Lab5.Controllers
         }
 
         // GET: Post/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(string id)
         {
-            return View();
+            if(id == null)
+            {
+                return NotFound();
+            }
+
+            var post = postService.Get(id);
+            if(post == null)
+            {
+                return NotFound();
+            }
+            return View(post);
         }
 
         // GET: Post/Create
@@ -42,6 +52,7 @@ namespace ITHS_DB_Lab5.Controllers
         {
             if (ModelState.IsValid)
             {
+                post.DateCreated = DateTime.Now;
                 postService.Create(post);
                 return RedirectToAction(nameof(Index));
             }
@@ -92,11 +103,17 @@ namespace ITHS_DB_Lab5.Controllers
         // POST: Post/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(string id, IFormCollection collection)
         {
             try
             {
-                // TODO: Add delete logic here
+                var post = postService.Get(id);
+                if(post == null)
+                {
+                    return NotFound();
+                }
+
+                postService.Remove(post.Id);
 
                 return RedirectToAction(nameof(Index));
             }

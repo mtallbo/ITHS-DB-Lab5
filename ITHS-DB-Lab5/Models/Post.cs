@@ -20,7 +20,7 @@ namespace ITHS_DB_Lab5.Models
         public string Text { get; set; }
 
         [BsonElement("DateCreated")]
-        public string DateCreated { get; set; }
+        public DateTime? DateCreated { get; set; }
 
         [BsonElement("Author")]
         public User Author { get; set; }
