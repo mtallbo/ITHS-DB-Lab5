@@ -9,7 +9,7 @@ namespace ITHS_DB_Lab5.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [BsonElement("FirstName")]
         [Required]

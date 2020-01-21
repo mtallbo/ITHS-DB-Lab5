@@ -20,12 +20,9 @@ namespace ITHS_DB_Lab5.Models
         public string Text { get; set; }
 
         [BsonElement("DateCreated")]
-        [BsonDateTimeOptions(Kind = DateTimeKind.Local)]
-        [Required]
-        public DateTime DateCreated { get; set; }
+        public string DateCreated { get; set; }
 
         [BsonElement("Author")]
-        [Required]
         public User Author { get; set; }
 
         [BsonElement("Categories")]

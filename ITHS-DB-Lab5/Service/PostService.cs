@@ -27,7 +27,10 @@ namespace ITHS_DB_Lab5.Service
             posts.InsertOne(post);
             return post;
         }
-
+        public void Update(string id, Post carIn)
+        {
+            posts.ReplaceOne(post => post.Id == id, carIn);
+        }
         public void Remove(string id) =>
             posts.DeleteOne(post => post.Id == id);
     }
