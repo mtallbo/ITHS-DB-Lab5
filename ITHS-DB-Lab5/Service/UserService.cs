@@ -31,6 +31,8 @@ namespace ITHS_DB_Lab5.Service
             return user;
         }
 
+        
+
         public void Remove(string id) =>
             users.DeleteOne(user => user.Id == id);
     }

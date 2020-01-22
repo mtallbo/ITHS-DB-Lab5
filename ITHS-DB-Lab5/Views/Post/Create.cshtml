@@ -19,15 +19,13 @@
             </div>
             <div class="form-group">
                 <label asp-for="Text" class="control-label"></label>
-                <input asp-for="Text" class="form-control" />
+                @Html.TextArea("Text", null, new { @class = "form-control" })
                 <span asp-validation-for="Text" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Categories" class="control-label"></label>
+                <label asp-for="Categories" class="control-label">Categories (Just space between, example: Cars Engines Vehicle)</label>
                 <input asp-for="Categories" class="form-control" />
-                <span asp-validation-for="Text" class="text-danger"></span>
-                
-                @Html.EditorFor(model => model.Categories)
+                <span asp-validation-for="Categories" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

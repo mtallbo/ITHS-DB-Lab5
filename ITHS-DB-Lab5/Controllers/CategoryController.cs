@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using ITHS_DB_Lab5.Service;
+using Microsoft.AspNetCore.Mvc;
+
+namespace ITHS_DB_Lab5.Controllers
+{
+    public class CategoryController : Controller
+    {
+        private readonly PostService postService;
+
+        public CategoryController(PostService postService)
+        {
+            this.postService = postService;
+        }
+
+        public ActionResult Index()
+        {
+            ViewBag.CategoryList = postService.GetAllCategories();
+            return View();
+        }
+    }
+}

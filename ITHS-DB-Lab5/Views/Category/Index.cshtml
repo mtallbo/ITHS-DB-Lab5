@@ -1,0 +1,33 @@
+﻿@model List<string>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Category
+            </th>
+            <th>
+                Count
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in ViewBag.CategoryList)
+    {
+        <tr>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Count
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
