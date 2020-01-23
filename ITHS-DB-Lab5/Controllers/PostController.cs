@@ -30,7 +30,6 @@ namespace ITHS_DB_Lab5.Controllers
             {
                 return NotFound();
             }
-
             var post = postService.Get(id);
             if(post == null)
             {
@@ -112,9 +111,7 @@ namespace ITHS_DB_Lab5.Controllers
                 {
                     return NotFound();
                 }
-
                 postService.Remove(post.Id);
-
                 return RedirectToAction(nameof(Index));
             }
             catch

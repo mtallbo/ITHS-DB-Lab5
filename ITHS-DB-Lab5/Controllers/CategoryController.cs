@@ -18,8 +18,28 @@ namespace ITHS_DB_Lab5.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.CategoryList = postService.GetAllCategories();
+            var clist = postService.GetAllCategories()
+                .Where(p => p.Name != null)
+                .ToList();
+            ViewBag.CategoryList = clist;
             return View();
+        }
+        public ActionResult PostByCategory(string name)
+        {
+            return View(postService.GetAllPostsByCategory(name));
+        }
+        public ActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var post = postService.Get(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return View(post);
         }
     }
 }

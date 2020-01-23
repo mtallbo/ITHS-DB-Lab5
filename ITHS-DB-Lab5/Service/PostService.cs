@@ -28,8 +28,11 @@ namespace ITHS_DB_Lab5.Service
 
         public Post Create(Post post)
         {
-            var categories = post.Categories[0].Split(' ');
-            post.Categories = categories;
+            if(!string.IsNullOrWhiteSpace(post.Categories[0]))
+            {
+                var categories = post.Categories[0].Split(' ');
+                post.Categories = categories;
+            }
             posts.InsertOne(post);
             return post;
         }
@@ -52,6 +55,13 @@ namespace ITHS_DB_Lab5.Service
                 .GroupBy(info => info.Name)
                 .Select(group => new DistinctCategories { Name = group.Key, Count = group.Count() });
             return duplicates;
+        }
+
+        public List<Post> GetAllPostsByCategory(string category)
+        {
+            var filter = Builders<Post>.Filter.Eq("Categories", category);
+            var result = posts.Find(filter).ToList();
+            return result;
         }
 
         public void Remove(string id) =>
